@@ -32,8 +32,16 @@
         "details": {
           "type": "Microsoft.Web/sites/basicPublishingCredentialsPolicies",
           "existenceCondition": {
-            "field": "Microsoft.Web/sites/basicPublishingCredentialsPolicies/scm.allow",
-            "equals": "true"
+            "anyOf": [
+              {
+                "field": "Microsoft.Web/sites/basicPublishingCredentialsPolicies/scm.allow",
+                "equals": "true"
+              },
+              {
+                "field": "Microsoft.Web/sites/basicPublishingCredentialsPolicies/ftp.allow",
+                "equals": "true"
+              }
+            ]
           },
           "roleDefinitionIds": [
             "/providers/Microsoft.Authorization/roleDefinitions/4d97b98b-1d4f-4787-a291-c67834d212e7",
@@ -89,7 +97,16 @@
                         },
                         "resources": [
                           {
-                            "type": "Microsoft.Web/basicPublishingCredentialsPolicies",
+                            "type": "Microsoft.Web/basicPublishingCredentialsPolicies/ftp",
+                            "apiVersion": "2020-07-01",
+                            "location": "[parameters('location')]",
+                            "tags": {},
+                            "properties": {
+                              "allow": "false"
+                            }
+                          },
+                          {
+                            "type": "Microsoft.Web/basicPublishingCredentialsPolicies/scm",
                             "apiVersion": "2020-07-01",
                             "location": "[parameters('location')]",
                             "tags": {},
