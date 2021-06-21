@@ -98,6 +98,7 @@
                         "resources": [
                           {
                             "type": "Microsoft.Web/basicPublishingCredentialsPolicies/ftp",
+                            "name": "TODO: how to pass the site name as a parameter to this template?",
                             "apiVersion": "2020-07-01",
                             "location": "[parameters('location')]",
                             "tags": {},
@@ -107,6 +108,7 @@
                           },
                           {
                             "type": "Microsoft.Web/basicPublishingCredentialsPolicies/scm",
+                            "name": "TODO: how to pass the site name as a parameter to this template?",
                             "apiVersion": "2020-07-01",
                             "location": "[parameters('location')]",
                             "tags": {},
