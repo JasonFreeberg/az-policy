@@ -35,7 +35,11 @@
             "field": "Microsoft.Web/sites/basicPublishingCredentialsPolicies/scm.allow",
             "equals": "true"
           },
-         "deployment": {
+          "roleDefinitionIds": [
+            "/providers/Microsoft.Authorization/roleDefinitions/4d97b98b-1d4f-4787-a291-c67834d212e7",
+            "/providers/Microsoft.Authorization/roleDefinitions/8cf5e20a-e4b2-4e9d-b3a1-5ceb692c2761"
+          ],
+          "deployment": {
             "properties": {
               "mode": "incremental",
               "parameters": {
@@ -45,8 +49,8 @@
                 "serviceId": {
                   "value": "[field('id')]"
                 },
-                "privateEndpointSubnetId": {
-                  "value": "[parameters('privateEndpointSubnetId')]"
+                "location": {
+                  "value": "[field('location')]"
                 }
               },
               "template": {
@@ -59,17 +63,17 @@
                   "serviceId": {
                     "type": "string"
                   },
-                  "privateEndpointSubnetId": {
+                  "location": {
                     "type": "string"
                   }
                 },
                 "variables": {
-                  "privateEndpointName": "[concat('pe-',substring(parameters('name'),0,min(length(parameters('name')),50)),'-',uniquestring(deployment().name))]"
+                  "deploymentName": "[concat('disable-basic-auth',substring(parameters('name'),0,min(length(parameters('name')),50)),'-',uniquestring(deployment().name))]"
                 },
                 "resources": [
                   {
                     "type": "Microsoft.Resources/deployments",
-                    "name": "[variables('privateEndpointName')]",
+                    "name": "[variables('deploymentName')]",
                     "apiVersion": "2020-06-01",
                     "properties": {
                       "mode": "Incremental",
@@ -79,58 +83,21 @@
                       "template": {
                         "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
                         "contentVersion": "1.0.0.0",
-                        "parameters": {
-                          "serviceId": {
-                            "type": "string"
-                          },
-                          "privateEndpointSubnetId": {
-                            "type": "string"
-                          },
-                          "subnetLocation": {
-                            "type": "string"
-                          }
-                        },
+                        "parameters": {},
                         "variables": {
-                          "privateEndpointName": "[deployment().name]"
+                          "deploymentName": "[deployment().name]"
                         },
                         "resources": [
                           {
-                            "name": "[variables('privateEndpointName')]",
-                            "type": "Microsoft.Network/privateEndpoints",
+                            "type": "Microsoft.Web/basicPublishingCredentialsPolicies",
                             "apiVersion": "2020-07-01",
-                            "location": "[parameters('subnetLocation')]",
+                            "location": "[parameters('location')]",
                             "tags": {},
                             "properties": {
-                              "subnet": {
-                                "id": "[parameters('privateEndpointSubnetId')]"
-                              },
-                              "privateLinkServiceConnections": [
-                                {
-                                  "name": "[variables('privateEndpointName')]",
-                                  "properties": {
-                                    "privateLinkServiceId": "[parameters('serviceId')]",
-                                    "groupIds": [
-                                      "signalr"
-                                    ],
-                                    "requestMessage": "autoapprove"
-                                  }
-                                }
-                              ],
-                              "manualPrivateLinkServiceConnections": []
+                              "allow": "false"
                             }
                           }
                         ]
-                      },
-                      "parameters": {
-                        "serviceId": {
-                          "value": "[parameters('serviceId')]"
-                        },
-                        "privateEndpointSubnetId": {
-                          "value": "[parameters('privateEndpointSubnetId')]"
-                        },
-                        "subnetLocation": {
-                          "value": "[reference(first(take(split(parameters('privateEndpointSubnetId'),'/subnets'),1)),'2020-07-01','Full').location]"
-                        }
                       }
                     }
                   }
@@ -142,7 +109,6 @@
       }
     }
   },
-  "id": "/providers/Microsoft.Authorization/policyDefinitions/ef45854f-b33f-49a3-8041-9057e915d88f",
-  "name": "ef45854f-b33f-49a3-8041-9057e915d88f"
+  "id": "/providers/Microsoft.Authorization/policyDefinitions/TODO-NEEDS-NEW-GUID",
+  "name": "TODO-NEEDS-NEW-GUID"
 }
-          
