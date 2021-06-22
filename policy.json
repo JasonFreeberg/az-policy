@@ -1,7 +1,7 @@
 {
   "properties": {
     "displayName": "App Service should have local authentication methods disabled",
-    "description": "Disabling local authentication methods improves security by ensuring that App Service exclusively require Azure Active Directory identities for authentication. Learn more at: <ServiceSpecificAKA.ms>.",
+    "description": "Disabling local authentication methods improves security by ensuring that App Service exclusively require Azure Active Directory identities for authentication. Learn more at: https://aka.ms/app-service-disable-basic-auth.",
     "policyType": "BuiltIn",
     "mode": "Indexed",
     "metadata": {
