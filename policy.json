@@ -128,6 +128,6 @@
       }
     }
   },
-  "id": "/providers/Microsoft.Authorization/policyDefinitions/TODO-NEEDS-NEW-GUID",
-  "name": "TODO-NEEDS-NEW-GUID"
+  "id": "/providers/Microsoft.Authorization/policyDefinitions/5e97b776-f380-4722-a9a3-e7f0be029e79",
+  "name": "5e97b776-f380-4722-a9a3-e7f0be029e79"
 }
