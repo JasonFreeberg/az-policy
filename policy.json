@@ -1,7 +1,7 @@
 {
   "properties": {
-    "displayName": "Disable basic authentication to Azure App Service",
-    "description": "Enabling this policy will disable and audit basic authentication on your App Services. When basic auth is disabled, code deployments through the SCM site will be required to authenticate with an AAD identity. Attemtped authentication with the publishing profile, for example, will be denied.",
+    "displayName": "App Service should have local authentication methods disabled",
+    "description": "Disabling local authentication methods improves security by ensuring that App Service exclusively require Azure Active Directory identities for authentication. Learn more at: <ServiceSpecificAKA.ms>.",
     "policyType": "BuiltIn",
     "mode": "Indexed",
     "metadata": {
